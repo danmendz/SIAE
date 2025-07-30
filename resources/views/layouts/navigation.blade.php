@@ -15,6 +15,24 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('periodos.index')" :active="request()->routeIs('periodos')">
+                        {{ __('Periodos') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('estudiantes.index')" :active="request()->routeIs('estudiantes')">
+                        {{ __('Estudiantes') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('documentacion-estudiantil.index')" :active="request()->routeIs('documentacion-estudiantil')">
+                        {{ __('Documentación Estudiantil') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('adeudo-estudiantil.index')" :active="request()->routeIs('adeudo-estudiantil')">
+                        {{ __('Adeudo Estudiantil') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('calificacion-estudiantes.index')" :active="request()->routeIs('calificacion-estudiantes')">
+                        {{ __('Calificación Estudiantes') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('promedio-estudiantes.index')" :active="request()->routeIs('promedio-estudiantes')">
+                        {{ __('Promedio Estudiantes') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -69,6 +87,24 @@
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('periodos.index')" :active="request()->routeIs('periodos')">
+                {{ __('Periodos') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('estudiantes.index')" :active="request()->routeIs('estudiantes')">
+                {{ __('Estudiantes') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('documentacion-estudiantil.index')" :active="request()->routeIs('documentacion-estudiantil')">
+                {{ __('Documentación Estudiantil') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('adeudo-estudiantil.index')" :active="request()->routeIs('adeudo-estudiantil')">
+                {{ __('Adeudo Estudiantil') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('calificacion-estudiantes.index')" :active="request()->routeIs('calificacion-estudiantes')">
+                {{ __('Calificación Estudiantes') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('promedio-estudiantes.index')" :active="request()->routeIs('promedio-estudiantes')">
+                {{ __('Promedio Estudiantes') }}
             </x-responsive-nav-link>
         </div>
 
