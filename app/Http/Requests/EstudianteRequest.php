@@ -31,6 +31,7 @@ class EstudianteRequest extends FormRequest
 			'situacion' => 'required',
 			'turno' => 'required|string',
 			'periodo_inscrito' => 'required',
+            'estatus_academico' => 'required',
         ];
     }
 }

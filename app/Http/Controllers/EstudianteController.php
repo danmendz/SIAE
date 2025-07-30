@@ -46,9 +46,9 @@ class EstudianteController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($id): View
+    public function show($matricula): View
     {
-        $estudiante = Estudiante::find($id);
+        $estudiante = Estudiante::find($matricula);
 
         return view('estudiante.show', compact('estudiante'));
     }
@@ -56,9 +56,9 @@ class EstudianteController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id): View
+    public function edit($matricula): View
     {
-        $estudiante = Estudiante::find($id);
+        $estudiante = Estudiante::find($matricula);
 
         return view('estudiante.edit', compact('estudiante'));
     }
@@ -74,9 +74,9 @@ class EstudianteController extends Controller
             ->with('success', 'Estudiante updated successfully');
     }
 
-    public function destroy($id): RedirectResponse
+    public function destroy($matricula): RedirectResponse
     {
-        Estudiante::find($id)->delete();
+        Estudiante::find($matricula)->delete();
 
         return Redirect::route('estudiantes.index')
             ->with('success', 'Estudiante deleted successfully');

@@ -58,12 +58,12 @@
 										<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $estudiante->estatus_academico }}</td>
 
                                             <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900">
-                                                <form action="{{ route('estudiantes.destroy', $estudiante->id) }}" method="POST">
-                                                    <a href="{{ route('estudiantes.show', $estudiante->id) }}" class="text-gray-600 font-bold hover:text-gray-900 mr-2">{{ __('Show') }}</a>
-                                                    <a href="{{ route('estudiantes.edit', $estudiante->id) }}" class="text-indigo-600 font-bold hover:text-indigo-900  mr-2">{{ __('Edit') }}</a>
+                                                <form action="{{ route('estudiantes.destroy', $estudiante->matricula) }}" method="POST">
+                                                    <a href="{{ route('estudiantes.show', $estudiante->matricula) }}" class="text-gray-600 font-bold hover:text-gray-900 mr-2">{{ __('Show') }}</a>
+                                                    <a href="{{ route('estudiantes.edit', $estudiante->matricula) }}" class="text-indigo-600 font-bold hover:text-indigo-900  mr-2">{{ __('Edit') }}</a>
                                                     @csrf
                                                     @method('DELETE')
-                                                    <a href="{{ route('estudiantes.destroy', $estudiante->id) }}" class="text-red-600 font-bold hover:text-red-900" onclick="event.preventDefault(); confirm('Are you sure to delete?') ? this.closest('form').submit() : false;">{{ __('Delete') }}</a>
+                                                    <a href="{{ route('estudiantes.destroy', $estudiante->matricula) }}" class="text-red-600 font-bold hover:text-red-900" onclick="event.preventDefault(); confirm('Are you sure to delete?') ? this.closest('form').submit() : false;">{{ __('Delete') }}</a>
                                                 </form>
                                             </td>
                                         </tr>

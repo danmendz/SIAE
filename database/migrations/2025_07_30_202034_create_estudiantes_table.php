@@ -21,7 +21,7 @@ return new class extends Migration
             $table->enum('situacion', ['regular', 'irregular'])->default('regular');
             $table->string('turno', 20);
             $table->unsignedBigInteger('periodo_inscrito');
-            $table->enum('estatus_academico', ['activo', 'baja temporal', 'baja definitiva', 'egresado'])->nullable();
+            $table->enum('estatus_academico', ['activo', 'baja temporal', 'baja definitiva', 'egresado'])->default('activo');
 
             $table->foreign('periodo_inscrito')->references('id')->on('periodos');
 

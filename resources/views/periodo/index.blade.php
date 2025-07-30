@@ -30,6 +30,7 @@
 									<th scope="col" class="py-3 pl-4 pr-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">Mes Inicio</th>
 									<th scope="col" class="py-3 pl-4 pr-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">Mes Fin</th>
 									<th scope="col" class="py-3 pl-4 pr-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">Anio</th>
+									<th scope="col" class="py-3 pl-4 pr-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">Nombre periodo</th>
 
                                         <th scope="col" class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500"></th>
                                     </tr>
@@ -42,6 +43,7 @@
 										<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $periodo->mes_inicio }}</td>
 										<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $periodo->mes_fin }}</td>
 										<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $periodo->anio }}</td>
+										<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $periodo->nombre_periodo }}</td>
 
                                             <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900">
                                                 <form action="{{ route('periodos.destroy', $periodo->id) }}" method="POST">
