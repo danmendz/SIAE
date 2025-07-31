@@ -39,7 +39,7 @@ class DocumentacionEstudiantilController extends Controller
     {
         DocumentacionEstudiantil::create($request->validated());
 
-        return Redirect::route('documentacion-estudiantils.index')
+        return Redirect::route('documentacion-estudiantil.index')
             ->with('success', 'DocumentacionEstudiantil created successfully.');
     }
 
@@ -70,7 +70,7 @@ class DocumentacionEstudiantilController extends Controller
     {
         $documentacionEstudiantil->update($request->validated());
 
-        return Redirect::route('documentacion-estudiantils.index')
+        return Redirect::route('documentacion-estudiantil.index')
             ->with('success', 'DocumentacionEstudiantil updated successfully');
     }
 
@@ -78,7 +78,7 @@ class DocumentacionEstudiantilController extends Controller
     {
         DocumentacionEstudiantil::find($id)->delete();
 
-        return Redirect::route('documentacion-estudiantils.index')
+        return Redirect::route('documentacion-estudiantil.index')
             ->with('success', 'DocumentacionEstudiantil deleted successfully');
     }
 }

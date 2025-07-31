@@ -42,7 +42,6 @@ class CalificacionEstudiante extends Model
      */
     protected $fillable = ['matricula', 'periodo_calificaciones', 'materia', 'profesor', 'p1', 'aro1_1', 'p2', 'aro2_1', 'p3', 'aro3_1', 'ti', 'cf', 'are1', 'calificacion_cuatrimestral'];
 
-
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */

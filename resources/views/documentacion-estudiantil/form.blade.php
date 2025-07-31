@@ -16,15 +16,22 @@
         <x-input-error class="mt-2" :messages="$errors->get('observaciones')"/>
     </div>
     <div>
-        <x-input-label for="original" :value="__('Original')"/>
-        <x-text-input id="original" name="original" type="text" class="mt-1 block w-full" :value="old('original', $documentacionEstudiantil?->original)" autocomplete="original" placeholder="Original"/>
-        <x-input-error class="mt-2" :messages="$errors->get('original')"/>
+        <x-input-label for="original" :value="__('Original')" />
+        <select id="original" name="original" class="mt-1 block w-full">
+            <option value="1" {{ old('original', $documentacionEstudiantil?->original) == 1 ? 'selected' : '' }}>Sí</option>
+            <option value="0" {{ old('original', $documentacionEstudiantil?->original) == 0 ? 'selected' : '' }}>No</option>
+        </select>
+        <x-input-error class="mt-2" :messages="$errors->get('original')" />
     </div>
+    
     <div>
-        <x-input-label for="copia" :value="__('Copia')"/>
-        <x-text-input id="copia" name="copia" type="text" class="mt-1 block w-full" :value="old('copia', $documentacionEstudiantil?->copia)" autocomplete="copia" placeholder="Copia"/>
-        <x-input-error class="mt-2" :messages="$errors->get('copia')"/>
-    </div>
+        <x-input-label for="copia" :value="__('Copia')" />
+        <select id="copia" name="copia" class="mt-1 block w-full">
+            <option value="1" {{ old('copia', $documentacionEstudiantil?->copia) == 1 ? 'selected' : '' }}>Sí</option>
+            <option value="0" {{ old('copia', $documentacionEstudiantil?->copia) == 0 ? 'selected' : '' }}>No</option>
+        </select>
+        <x-input-error class="mt-2" :messages="$errors->get('copia')" />
+    </div>    
     <div>
         <x-input-label for="notas" :value="__('Notas')"/>
         <x-text-input id="notas" name="notas" type="text" class="mt-1 block w-full" :value="old('notas', $documentacionEstudiantil?->notas)" autocomplete="notas" placeholder="Notas"/>

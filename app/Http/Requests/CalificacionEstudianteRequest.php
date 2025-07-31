@@ -26,6 +26,16 @@ class CalificacionEstudianteRequest extends FormRequest
 			'periodo_calificaciones' => 'required',
 			'materia' => 'required|string',
 			'profesor' => 'string',
+            'p1' => 'numeric',
+            'aro1_1' => 'nullable|numeric',
+            'p2' => 'numeric',
+            'aro2_1' => 'nullable|numeric',
+            'p3' => 'numeric',
+            'aro3_1' => 'nullable|numeric',
+            'ti' => 'numeric',
+            'cf' => 'nullable|numeric',
+            'are1' => 'nullable|numeric',
+            'calificacion_cuatrimestral' => 'numeric',
         ];
     }
 }

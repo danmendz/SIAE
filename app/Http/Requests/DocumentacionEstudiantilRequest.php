@@ -24,10 +24,10 @@ class DocumentacionEstudiantilRequest extends FormRequest
         return [
 			'matricula' => 'required|string',
 			'documento' => 'required|string',
-			'observaciones' => 'string',
-			'original' => 'required',
-			'copia' => 'required',
-			'notas' => 'string',
+			'observaciones' => 'nullable|string',
+			'original' => 'nullable|boolean',
+			'copia' => 'nullable|boolean',
+			'notas' => 'nullable|string',
         ];
     }
 }

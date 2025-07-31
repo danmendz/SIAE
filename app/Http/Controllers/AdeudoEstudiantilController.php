@@ -39,7 +39,7 @@ class AdeudoEstudiantilController extends Controller
     {
         AdeudoEstudiantil::create($request->validated());
 
-        return Redirect::route('adeudo-estudiantils.index')
+        return Redirect::route('adeudo-estudiantil.index')
             ->with('success', 'AdeudoEstudiantil created successfully.');
     }
 
@@ -70,7 +70,7 @@ class AdeudoEstudiantilController extends Controller
     {
         $adeudoEstudiantil->update($request->validated());
 
-        return Redirect::route('adeudo-estudiantils.index')
+        return Redirect::route('adeudo-estudiantil.index')
             ->with('success', 'AdeudoEstudiantil updated successfully');
     }
 
@@ -78,7 +78,7 @@ class AdeudoEstudiantilController extends Controller
     {
         AdeudoEstudiantil::find($id)->delete();
 
-        return Redirect::route('adeudo-estudiantils.index')
+        return Redirect::route('adeudo-estudiantil.index')
             ->with('success', 'AdeudoEstudiantil deleted successfully');
     }
 }

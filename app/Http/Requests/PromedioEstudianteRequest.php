@@ -23,7 +23,10 @@ class PromedioEstudianteRequest extends FormRequest
     {
         return [
 			'matricula' => 'required|string',
+            'promedio_cuatrimestral' => 'required|numeric',
+            'promedio_general' => 'required|numeric',
 			'periodo_id' => 'required',
+
         ];
     }
 }
