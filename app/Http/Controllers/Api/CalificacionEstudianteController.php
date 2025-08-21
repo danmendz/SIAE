@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\CalificacionEstudiante;
 use App\Models\Periodo;
 use Illuminate\Http\Request;
+use App\Http\Resources\CalificacionResource;
 
 class CalificacionEstudianteController extends Controller
 {
@@ -30,7 +31,8 @@ class CalificacionEstudianteController extends Controller
      */
     public function show($matricula)
     {
-        $calificaciones = CalificacionEstudiante::where('matricula', $matricula)->get();
+        $calificacionesEncontradas = CalificacionEstudiante::where('matricula', $matricula)->get();
+        $calificaciones = CalificacionResource::collection($calificacionesEncontradas);
 
         if ($calificaciones->isEmpty()) {
             return response()->json(['message' => 'No se encontraron calificaciones para esta matrícula'], 404);

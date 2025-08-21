@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Periodo;
 use App\Models\PromedioEstudiante;
 use Illuminate\Http\Request;
+use App\Http\Resources\PromedioResource;
 
 class PromedioEstudianteController extends Controller
 {
@@ -30,7 +31,9 @@ class PromedioEstudianteController extends Controller
      */
     public function show($matricula)
     {
-        $promedios = PromedioEstudiante::where('matricula', $matricula)->get();
+        $promediosEncontrados = PromedioEstudiante::where('matricula', $matricula)->get();
+        $promedios = PromedioResource::collection($promediosEncontrados);
+
         if ($promedios->isEmpty()) {
             return response()->json(['message' => 'No se encontraron promedios para esta matrícula'], 404);
         }

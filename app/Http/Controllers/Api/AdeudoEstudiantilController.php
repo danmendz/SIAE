@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\AdeudoEstudiantil;
 use Illuminate\Http\Request;
+use App\Http\Resources\AdeudoResource;
 
 class AdeudoEstudiantilController extends Controller
 {
@@ -30,9 +31,8 @@ class AdeudoEstudiantilController extends Controller
      */
     public function show($matricula)
     {
-        $adeudos = AdeudoEstudiantil::with('estudiante')
-        ->where('matricula', $matricula)
-        ->get();
+        $adeudosEncontrados = AdeudoEstudiantil::with('estudiante')->where('matricula', $matricula)->get();
+        $adeudos = AdeudoResource::collection($adeudosEncontrados);;
 
         if ($adeudos->isEmpty()) {
             return response()->json(['message' => 'No se encontraron adeudos para esta matrícula'], 404);

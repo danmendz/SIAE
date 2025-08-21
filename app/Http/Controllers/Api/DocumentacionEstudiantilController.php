@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\DocumentacionEstudiantil;
 use Illuminate\Http\Request;
+use App\Http\Resources\DocumentacionResource;
 
 class DocumentacionEstudiantilController extends Controller
 {
@@ -29,7 +30,8 @@ class DocumentacionEstudiantilController extends Controller
      */
     public function show($matricula)
     {
-        $documentos = DocumentacionEstudiantil::where('matricula', $matricula)->get();
+        $documentosEncontrados = DocumentacionEstudiantil::where('matricula', $matricula)->get();
+        $documentos = DocumentacionResource::collection($documentosEncontrados);
 
         if ($documentos->isEmpty()) {
             return response()->json(['message' => 'No se encontró documentación para esta matrícula'], 404);
