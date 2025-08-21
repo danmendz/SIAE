@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Estudiante;
 use Illuminate\Http\Request;
+use App\Http\Resources\EstudianteResource;
 
 class EstudianteController extends Controller
 {
@@ -30,7 +31,8 @@ class EstudianteController extends Controller
      */
     public function show($matricula)
     {
-        $estudiante = Estudiante::find($matricula);
+        $estudianteEncontrado = Estudiante::find($matricula);
+        $estudiante =  new EstudianteResource($estudianteEncontrado);
 
         if (!$estudiante) {
             return response()->json(['message' => 'Estudiante no encontrado'], 404);
