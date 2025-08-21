@@ -10,6 +10,12 @@ use App\Models\Estudiante;
 use App\Models\Periodo;
 use App\Models\PromedioEstudiante;
 use Illuminate\Http\Request;
+use App\Http\Resources\CalificacionResource;
+use App\Http\Resources\EstudianteResource;
+use App\Http\Resources\PromedioResource;
+use App\Http\Resources\AdeudoResource;
+use App\Http\Resources\DocumentacionResource;
+
 
 class InformacionEstudianteController extends Controller
 {
@@ -34,7 +40,7 @@ class InformacionEstudianteController extends Controller
      */
     public function show($matricula)
     {
-        $estudiante = Estudiante::where('matricula', $matricula)->first();
+        $estudiante = Estudiante::with('periodo')->where('matricula', $matricula)->first();
 
         if (!$estudiante) {
             return response()->json(['message' => 'Estudiante no encontrado'], 404);
@@ -42,15 +48,15 @@ class InformacionEstudianteController extends Controller
 
         $adeudos = AdeudoEstudiantil::where('matricula', $matricula)->get();
         $documentos = DocumentacionEstudiantil::where('matricula', $matricula)->get();
-        $calificaciones = CalificacionEstudiante::where('matricula', $matricula)->get();
-        $promedios = PromedioEstudiante::where('matricula', $matricula)->get();
+        $calificaciones = CalificacionEstudiante::with('periodo')->where('matricula', $matricula)->get();
+        $promedios = PromedioEstudiante::with('periodo')->where('matricula', $matricula)->get();
 
         return response()->json([
-            'estudiante' => $estudiante,
-            'adeudos' => $adeudos,
-            'documentacion' => $documentos,
-            'calificaciones' => $calificaciones,
-            'promedios' => $promedios,
+            'estudiante' => new EstudianteResource($estudiante),
+            'adeudos' => AdeudoResource::collection($adeudos),
+            'documentacion' => DocumentacionResource::collection($documentos),
+            'calificaciones' => CalificacionResource::collection($calificaciones),
+            'promedios' => PromedioResource::collection($promedios),
         ]);
     }
 
@@ -67,19 +73,19 @@ class InformacionEstudianteController extends Controller
         // Validación de parámetros
         if (!$mes_inicio || !$mes_fin || !$anio) {
             return response()->json([
-                'message' => 'Faltan parámetros: mes_inicio, mes_fin y/o anio. mes_inicio y mes_fin deben estar entre 1 y 12, y anio debe ser un número entre 1900 y el año actual.'
+                'message' => 'Faltan parámetros: los meses deben estar entre 1 y 12, y el anio debe ser un número entre 1900 y el año actual.'
             ], 400);
         }
 
         if (!is_numeric($mes_inicio) || !is_numeric($mes_fin) || !is_numeric($anio) ||
             $mes_inicio < 1 || $mes_inicio > 12 || $mes_fin < 1 || $mes_fin > 12 || $anio < 1900 || $anio > date('Y')) {
             return response()->json([
-                'message' => 'Parámetros inválidos: mes_inicio, mes_fin y/o anio deben estar en un rango válido'
+                'message' => 'Parámetros inválidos: los parámetros deben estar en un rango válido'
             ], 400);
         }
 
         // Buscar estudiante
-        $estudiante = Estudiante::where('matricula', $matricula)->first();
+        $estudiante = Estudiante::with('periodo')->where('matricula', $matricula)->first();
         if (!$estudiante) {
             return response()->json(['message' => 'Estudiante no encontrado'], 404);
         }
@@ -99,20 +105,23 @@ class InformacionEstudianteController extends Controller
         // Obtener datos relacionados
         $adeudos = AdeudoEstudiantil::where('matricula', $matricula)->get();
         $documentos = DocumentacionEstudiantil::where('matricula', $matricula)->get();
-        $calificaciones = CalificacionEstudiante::where('matricula', $matricula)
+
+        $calificaciones = CalificacionEstudiante::with('periodo')
+            ->where('matricula', $matricula)
             ->where('periodo_calificaciones', $periodo->id)
             ->get();
-        $promedios = PromedioEstudiante::where('matricula', $matricula)
+
+        $promedios = PromedioEstudiante::with('periodo')
+            ->where('matricula', $matricula)
             ->where('periodo_id', $periodo->id)
             ->get();
 
         return response()->json([
-            'estudiante' => $estudiante,
-            'adeudos' => $adeudos,
-            'documentacion' => $documentos,
-            'calificaciones' => $calificaciones,
-            'promedios' => $promedios,
-            'periodo' => $periodo
+            'estudiante' => new EstudianteResource($estudiante),
+            'adeudos' => AdeudoResource::collection($adeudos),
+            'documentacion' => DocumentacionResource::collection($documentos),
+            'calificaciones' => CalificacionResource::collection($calificaciones),
+            'promedios' => PromedioResource::collection($promedios),
         ]);
     }
 
